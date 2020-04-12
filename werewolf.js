@@ -33,7 +33,7 @@ let healer = undefined;
 let werewolves = [];
 
 
-const getWerewolves = new Promise((resolve, reject) => {
+const getWerewolves = () => {
   let remainingWerewolves = numberOfWerewolves;
 
   while(remainingWerewolves > 0) {
@@ -43,31 +43,23 @@ const getWerewolves = new Promise((resolve, reject) => {
     players.splice(randomPlayerIndex, 1)
     remainingWerewolves-=1;
   }
-  resolve(players);
-  reject(new Error('something went wrong in getting werewolves'))
-})
+}
 
 
-const getSeer = new Promise((resolve, reject) => {
+const getSeer = () => {
   let randomPlayerIndex = Math.floor(Math.random() * Math.floor(players.length));
-
+  
   seer = players[randomPlayerIndex];
   players.splice(randomPlayerIndex, 1)
-
-  resolve(players)
-  reject(new Error('something went wrong in getting seer'))
-})
+}
 
 
-const getHealer = new Promise((resolve, reject) => {
-    let randomPlayerIndex = Math.floor(Math.random() * Math.floor(players.length));
+const getHealer = () => {
+  let randomPlayerIndex = Math.floor(Math.random() * Math.floor(players.length));
 
-    healer = players[randomPlayerIndex];
-    players.splice(randomPlayerIndex, 1)
-
-    resolve(players)
-    reject(new Error('something went wrong in getting healer'))
-})
+  healer = players[randomPlayerIndex];
+  players.splice(randomPlayerIndex, 1)
+};
 
 
 const assignGamePlayers = () => {
@@ -75,14 +67,11 @@ const assignGamePlayers = () => {
     console.log('You need at least seven players!')
     return;
   }
-  getWerewolves.then(() => {
-    getSeer.then(() => {
-      getHealer.then(() => {
-        console.log(`werewolves - ${werewolves}`)
-        console.log(`the seer is ${seer}`)
-        console.log(`the healer is ${healer}`)
-      })
-    })
-  })
+  getWerewolves();
+  getSeer();
+  getHealer();
+  console.log(`werewolves - ${werewolves}`)
+  console.log(`the seer is ${seer}`)
+  console.log(`the healer is ${healer}`)
 }
 assignGamePlayers()
