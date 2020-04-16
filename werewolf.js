@@ -1,31 +1,7 @@
+//write player names in players array 
+
 const players = [
-  "Ruth","Jackson",
-  "Debra","Allen",
-  "Gerald","Harris",
-  "Raymond","Carter",
-  "Jacqueline","Torres",
-  "Joseph","Nelson",
-  "Carlos","Sanchez",
-  "Ralph","Clark",
-  "Jean","Alexander",
-  "Stephen","Roberts",
-  "Eric","Long",
-  "Amanda","Scott",
-  "Teresa","Diaz",
-  "Wanda","Thomas","Brooks",
-  "Rachel","Edwards",
-  "Christopher","Perez",
-  "Thomas","Baker",
-  "Sara","Moore",
-  "Chris","Bailey",
-  "Roger","Johnson",
-  "Marilyn","Thompson",
-  "Anthony","Evans",
-  "Julie","Hall",
-  "Paula","Phillips",
-  "Annie","Hernandez",
-  "Dorothy","Murphy",
-  "Alice","Howard"
+  
 ];
 const numberOfWerewolves = players.length < 14 ? 2 : Math.floor(players.length / 5);
 let seer = undefined;
