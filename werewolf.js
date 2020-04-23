@@ -1,51 +1,56 @@
 //write player names in players array 
 
 const players = [
-  
+ 
 ];
 const numberOfWerewolves = players.length < 14 ? 2 : Math.floor(players.length / 5);
-let seer = undefined;
-let healer = undefined;
-let werewolves = [];
+let seer = undefined, healer = undefined, werewolves = [];
 
 
-const getWerewolves = () => {
-  let remainingWerewolves = numberOfWerewolves;
+const getWerewolves = (cb) => {
+  werewolves = [];
+  let remainingWerewolves = numberOfWerewolves, playerSelection = players.slice();
 
-  while(remainingWerewolves > 0) {
-    let randomPlayerIndex = Math.floor(Math.random() * Math.floor(players.length));
+  while (remainingWerewolves > 0) {
+    let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playerSelection.length));
 
-    werewolves.push(players[randomPlayerIndex]);
-    players.splice(randomPlayerIndex, 1)
-    remainingWerewolves-=1;
+    werewolves.push(playerSelection[randomPlayerIndex]);
+    playerSelection.splice(randomPlayerIndex, 1)
+    remainingWerewolves -= 1;
+
+    cb(playerSelection)
   }
 }
 
 
-const getSeer = () => {
-  let randomPlayerIndex = Math.floor(Math.random() * Math.floor(players.length));
-  
-  seer = players[randomPlayerIndex];
-  players.splice(randomPlayerIndex, 1)
+const getSeer = (playerSelection, cb) => {
+  let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playerSelection.length));
+
+  seer = playerSelection[randomPlayerIndex];
+  playerSelection.splice(randomPlayerIndex, 1)
+
+  cb(playerSelection)
 }
 
 
-const getHealer = () => {
-  let randomPlayerIndex = Math.floor(Math.random() * Math.floor(players.length));
+const getHealer = (playerSelection) => {
+  let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playerSelection.length));
 
-  healer = players[randomPlayerIndex];
-  players.splice(randomPlayerIndex, 1)
+  healer = playerSelection[randomPlayerIndex];
+  playerSelection.splice(randomPlayerIndex, 1)
 };
 
 
 const assignGamePlayers = () => {
-  if(players.length < 6) {
+  if (players.length < 6) {
     console.log('You need at least seven players!')
     return;
   }
-  getWerewolves();
-  getSeer();
-  getHealer();
+  getWerewolves((results) => {
+    getSeer(results, (results) => {
+      getHealer(results)
+    })
+  })
   console.log(`werewolves - ${werewolves}`)
   console.log(`the seer is ${seer}`)
   console.log(`the healer is ${healer}`)
