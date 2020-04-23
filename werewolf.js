@@ -2,9 +2,7 @@
 const players = ['tyler', 'tay', 'Ish', 'Taylor', 'Tom', 'TechleadTom', 'Tim', 'Eric'];
 
 const numberOfWerewolves = players.length < 14 ? 2 : Math.floor(players.length / 5);
-let seer = undefined;
-let healer = undefined;
-let werewolves = [];
+let seer = undefined, healer = undefined, werewolves = [];
 
 
 const getWerewolves = () => {
