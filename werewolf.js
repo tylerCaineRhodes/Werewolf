@@ -65,7 +65,7 @@ const assignGamePlayers = () => {
       })
     })
   }).catch(err => {
-    console.log('there is a poop err -->', err)
+    console.log('there was an err -->', err)
   })
 }
 assignGamePlayers()
