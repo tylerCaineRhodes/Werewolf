@@ -1,4 +1,3 @@
-//write player names in array
 class Werewolf {
   constructor(players) {
     this.players = players;
