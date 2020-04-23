@@ -1,8 +1,5 @@
 //write player names in players array 
-
-const players = [
- 
-];
+const players = [];
 const numberOfWerewolves = players.length < 14 ? 2 : Math.floor(players.length / 5);
 let seer = undefined, healer = undefined, werewolves = [];
 
