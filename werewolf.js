@@ -11,8 +11,7 @@ class Werewolf {
     return new Promise((resolve, reject) => {
       //reset array during each invocation
       this.werewolves = [];
-      let remainingWerewolves = this.numberOfWerewolves,
-        playersCopy = this.players.slice();
+      let remainingWerewolves = this.numberOfWerewolves, playersCopy = this.players.slice();
 
       while (remainingWerewolves > 0) {
         let randomPlayerIndex = Math.floor(
@@ -30,9 +29,7 @@ class Werewolf {
 
   getSeer = (playersCopy) => {
     return new Promise((resolve, reject) => {
-      let randomPlayerIndex = Math.floor(
-        Math.random() * Math.floor(playersCopy.length)
-      );
+      let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playersCopy.length));
 
       this.seer = playersCopy[randomPlayerIndex];
       playersCopy.splice(randomPlayerIndex, 1);
