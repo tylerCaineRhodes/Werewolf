@@ -21,7 +21,7 @@ class Werewolf {
         this.werewolves.push(playersCopy[randomPlayerIndex]);
         playersCopy.splice(randomPlayerIndex, 1);
         remainingWerewolves -= 1;
-      }
+      };
       resolve(playersCopy);
       reject(new Error('something went wrong in getting werewolves'));
     });
@@ -55,14 +55,14 @@ class Werewolf {
     console.log(`werewolves - ${this.werewolves}`);
     console.log(`the seer is ${this.seer}`);
     console.log(`the healer is ${this.healer}`);
-  }
+  };
 
   assignGamePlayers = async() => {
     if (this.players.length < 6) {
       console.log('You need at least seven players!');
       return;
     };
-    
+
     let playersAfterWerewolves = await this.getWerewolves();
     let playersAfterSeer = await this.getSeer(playersAfterWerewolves);
 
@@ -72,4 +72,4 @@ class Werewolf {
       console.log(`the healer is ${this.healer}`);
     });
   };
-}
+};
