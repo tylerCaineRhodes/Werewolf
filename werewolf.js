@@ -5,7 +5,7 @@ class Werewolf {
     this.seer = undefined;
     this.healer = undefined;
     this.werewolves = [];
-  }
+  };
 
   getWerewolves = () => {
     return new Promise((resolve, reject) => {
@@ -57,23 +57,19 @@ class Werewolf {
     console.log(`the healer is ${this.healer}`);
   }
 
-  assignGamePlayers = () => {
+  assignGamePlayers = async() => {
     if (this.players.length < 6) {
       console.log('You need at least seven players!');
       return;
-    }
-    this.getWerewolves()
-      .then((results) => {
-        this.getSeer(results).then((results) => {
-          this.getHealer(results).then(() => {
-            console.log(`werewolves - ${this.werewolves}`);
-            console.log(`the seer is ${this.seer}`);
-            console.log(`the healer is ${this.healer}`);
-          });
-        });
-      })
-      .catch((err) => {
-        console.log('there was an err -->', err);
-      });
+    };
+    
+    let playersAfterWerewolves = await this.getWerewolves();
+    let playersAfterSeer = await this.getSeer(playersAfterWerewolves);
+
+    this.getHealer(playersAfterSeer).then(() => {
+      console.log(`werewolves - ${this.werewolves}`);
+      console.log(`the seer is ${this.seer}`);
+      console.log(`the healer is ${this.healer}`);
+    });
   };
 }
