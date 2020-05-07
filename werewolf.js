@@ -51,12 +51,17 @@ class Werewolf {
     });
   };
 
+  getCurrentRoles = () => {
+    console.log(`werewolves - ${this.werewolves}`);
+    console.log(`the seer is ${this.seer}`);
+    console.log(`the healer is ${this.healer}`);
+  }
+
   assignGamePlayers = () => {
     if (this.players.length < 6) {
       console.log('You need at least seven players!');
       return;
     }
-
     this.getWerewolves()
       .then((results) => {
         this.getSeer(results).then((results) => {
