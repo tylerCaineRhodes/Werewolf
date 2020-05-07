@@ -12,44 +12,43 @@ const getWerewolves = (cb) => {
     let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playerSelection.length));
 
     werewolves.push(playerSelection[randomPlayerIndex]);
-    playerSelection.splice(randomPlayerIndex, 1)
+    playerSelection.splice(randomPlayerIndex, 1);
     remainingWerewolves -= 1;
-
-    cb(playerSelection)
-  }
-}
+  };
+  cb(playerSelection);
+};
 
 
 const getSeer = (playerSelection, cb) => {
   let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playerSelection.length));
 
   seer = playerSelection[randomPlayerIndex];
-  playerSelection.splice(randomPlayerIndex, 1)
+  playerSelection.splice(randomPlayerIndex, 1);
 
-  cb(playerSelection)
-}
+  cb(playerSelection);
+};
 
 
 const getHealer = (playerSelection) => {
   let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playerSelection.length));
 
   healer = playerSelection[randomPlayerIndex];
-  playerSelection.splice(randomPlayerIndex, 1)
+  playerSelection.splice(randomPlayerIndex, 1);
 };
 
 
 const assignGamePlayers = () => {
   if (players.length < 6) {
-    console.log('You need at least seven players!')
+    console.log('You need at least seven players!');
     return;
-  }
+  };
   getWerewolves((results) => {
     getSeer(results, (results) => {
-      getHealer(results)
-    })
-  })
-  console.log(`werewolves - ${werewolves}`)
-  console.log(`the seer is ${seer}`)
-  console.log(`the healer is ${healer}`)
-}
-assignGamePlayers()
+      getHealer(results);
+    });
+  });
+  console.log(`werewolves - ${werewolves}`);
+  console.log(`the seer is ${seer}`);
+  console.log(`the healer is ${healer}`);
+};
+assignGamePlayers();
