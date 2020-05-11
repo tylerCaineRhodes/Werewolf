@@ -2,7 +2,7 @@ class Werewolf {
   constructor(players) {
     this.players = players;
     this.numberOfWerewolves = players.length < 14 ? 2 : Math.floor(players.length / 5);
-    // this.numberOfWerewolves = Math.floor(players.length / 4); //adds more werewolves per players
+    // this.numberOfWerewolves = Math.floor(players.length / 4); //adds more werewolves per player
     this.seer = undefined;
     this.healer = undefined;
     this.werewolves = [];
