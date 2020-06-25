@@ -11,44 +11,51 @@ class Werewolf {
   getWerewolves = () => {
     return new Promise((resolve, reject) => {
       //reset array during each invocation
-      this.werewolves = [];
-      let remainingWerewolves = this.numberOfWerewolves, playersCopy = this.players.slice();
+      setTimeout(() => {
+        this.werewolves = [];
+        let remainingWerewolves = this.numberOfWerewolves, playersCopy = this.players.slice();
+  
+        while (remainingWerewolves > 0) {
+          let randomPlayerIndex = Math.floor(
+            Math.random() * Math.floor(playersCopy.length)
+          );
+  
+          this.werewolves.push(playersCopy[randomPlayerIndex]);
+          playersCopy.splice(randomPlayerIndex, 1);
+          remainingWerewolves -= 1;
+        }
 
-      while (remainingWerewolves > 0) {
-        let randomPlayerIndex = Math.floor(
-          Math.random() * Math.floor(playersCopy.length)
-        );
-
-        this.werewolves.push(playersCopy[randomPlayerIndex]);
-        playersCopy.splice(randomPlayerIndex, 1);
-        remainingWerewolves -= 1;
-      }
-      resolve(playersCopy);
-      reject(new Error('something went wrong in getting werewolves'));
+        resolve(playersCopy);
+        reject(new Error('something went wrong in getting werewolves'));
+      }, 1000);
     });
   };
 
   getSeer = (playersCopy) => {
     return new Promise((resolve, reject) => {
-      let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playersCopy.length));
-
-      this.seer = playersCopy[randomPlayerIndex];
-      playersCopy.splice(randomPlayerIndex, 1);
-
-      resolve(playersCopy);
-      reject(new Error('something went wrong in getting seer'));
+      setTimeout(() => {
+        let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playersCopy.length));
+  
+        this.seer = playersCopy[randomPlayerIndex];
+        playersCopy.splice(randomPlayerIndex, 1);
+  
+        resolve(playersCopy);
+        reject(new Error('something went wrong in getting seer'));
+      }, 1000);
     });
   };
 
   getHealer = (playersCopy) => {
     return new Promise((resolve, reject) => {
-      let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playersCopy.length));
 
-      this.healer = playersCopy[randomPlayerIndex];
-      playersCopy.splice(randomPlayerIndex, 1);
+      setTimeout(() => {
+        let randomPlayerIndex = Math.floor(Math.random() * Math.floor(playersCopy.length));
+        this.healer = playersCopy[randomPlayerIndex];
+        playersCopy.splice(randomPlayerIndex, 1);
 
-      resolve(playersCopy);
-      reject(new Error('something went wrong in getting healer'));
+        resolve(playersCopy);
+        reject(new Error('something went wrong in getting healer'));
+      }, 1000);
     });
   };
 
